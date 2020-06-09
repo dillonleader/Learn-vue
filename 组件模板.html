@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件模板</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <templa>
+            <h1 slot="one">插槽 one</h1>
+            <h1 slot="two">插槽 two</h1>
+            <h1 slot="three">插槽 three</h1>
+        </templa>
+    </div>
+    <template id="box">
+        <div>
+            <slot name="one">one</slot>
+            <slot name="two">two</slot>
+            <slot name="three">three</slot>
+        </div>
+    </template>
+</body>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{},
+        components:{
+            'templa':{
+                template:'#box'
+            }
+        }
+    })
+</script>
+</html>
