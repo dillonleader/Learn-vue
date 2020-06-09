@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <templa>
+            <h1>组件1</h1>
+            <h2>组件2</h2>
+            <h3>组件3</h3>
+        </templa>
+    </div>
+    <template id="box">
+        <div>
+            <slot></slot>
+        </div>
+    </template>
+</body>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{},
+        components:{
+            "templa":{
+                template:'#box'
+            }
+        }
+    })
+</script>
+</html>
