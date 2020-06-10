@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>filter时间</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ dateTime|date }}
+    </div>
+    <script>
+        Vue.filter('date', (val) => {
+            var onTime = new Date(val)
+            return `${onTime.getFullYear()}年-${onTime.getMonth() + 1}月 星期${onTime.getDay()}`
+        })  
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                dateTime: Date.now()
+            }
+        })
+    </script>
+</body>
+</html>

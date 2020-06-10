@@ -8,16 +8,20 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <style>
-    #app>div{
+    #app>div {
         text-align: center;
         line-height: 200px;
         font-size: 25px;
         cursor: default;
     }
 </style>
+
 <body>
     <div id="app">
-        <div v-drop>Vue自定义拖拽</div>
+        <div v-drop>自定义拖拽</div>
+        <div v-cloak>{{ name }}</div>
+        <input type="text" v-model="name">{{ name }}
+        <div>{{ name }}</div>
     </div>
     <script>
         Vue.directive('drop', {
@@ -26,6 +30,7 @@
                 el.style.width = '200px';
                 el.style.height = '200px';
                 el.style.color = "#fff"
+                el.style.position = "absolute"
 
                 el.onmousedown = (e) => {
                     let disX = e.clientX - el.offsetLeft;
@@ -44,9 +49,12 @@
                 }
             }
         })
-        let vm = new Vue({
+
+        new Vue({
             el: '#app',
-            data: {}
+            data: {
+                name: '内容1'
+            }
         })
     </script>
 </body>
