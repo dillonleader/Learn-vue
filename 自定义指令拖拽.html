@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义指令拖拽</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+    #app>div{
+        text-align: center;
+        line-height: 200px;
+        font-size: 25px;
+        cursor: default;
+    }
+</style>
+<body>
+    <div id="app">
+        <div v-drop>Vue自定义拖拽</div>
+    </div>
+    <script>
+        Vue.directive('drop', {
+            bind: (el) => {
+                el.style.background = '#0089ff';
+                el.style.width = '200px';
+                el.style.height = '200px';
+                el.style.color = "#fff"
+
+                el.onmousedown = (e) => {
+                    let disX = e.clientX - el.offsetLeft;
+                    let disY = e.clientY - el.offsetTop;
+                    document.onmousemove = (e) => {
+                        let lf = e.clientX - disX
+                        let rh = e.clientY - disY
+                        el.style.marginLeft = lf + 'px'
+                        el.style.marginTop = rh + 'px'
+                        console.log(lf, rh);
+                    }
+                    document.onmouseup = (e) => {
+                        document.onmousemove = null
+                        document.onmouseup = null
+                    }
+                }
+            }
+        })
+        let vm = new Vue({
+            el: '#app',
+            data: {}
+        })
+    </script>
+</body>
+
+</html>

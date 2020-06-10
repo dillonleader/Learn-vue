@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch监听</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{a}}</h1>
+        <h2>{{b}}</h2>
+        <button onclick="btn()">点击</button>
+    </div>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                a: 4,
+                b: 9
+            }
+        })
+        vm.$watch('a', () => { // 箭头函数 this 监听
+            alert('被监听到了')
+            vm.b = vm.a + 10
+        })
+
+        function btn(){
+            vm.a = 123
+        }
+    </script>
+</body>
+</html>

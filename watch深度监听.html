@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch深度监听</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+   <div id="app">
+       <h1>{{ num.a }}</h1>
+       <h1>{{ num.b }}</h1>
+   </div> 
+   <script>
+       let vm = new Vue({
+           el:'#app',
+           data:{
+               num:{
+                   a:1,
+                   b:2
+               }
+           }
+       })
+       vm.$watch('num', () => {
+           vm.num.b = vm.num.a + 10 
+       }, {deep: true})
+
+       document.onclick = () => {
+           vm.num.a = 100
+       }
+   </script>
+</body>
+</html>
