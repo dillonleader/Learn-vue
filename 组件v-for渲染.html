@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件v-for渲染</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+    img{width: 250px;height: 250px;}
+    ul{list-style: none;padding: 0;}
+</style>
+<body>
+    <div id="app">
+        <assem></assem>
+    </div>
+
+    <template id="box">
+        <div>
+            <ul v-for="(item, index) in datalist" :key="index">
+                <li>
+                    <a href="">{{ index }}: {{ item.name }}</a>
+                    <br>
+                    <img :src="item.img" alt="">
+                </li>
+            </ul>
+        </div>
+    </template>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        components: {
+            'assem': {
+                template: '#box',
+                data() {
+                    return {
+                        datalist: [{
+                                name: 'USC',
+                                img: 'http://localhost/b (1).jpg'
+                            },
+                            {
+                                name: 'UER',
+                                img: 'http://localhost/b (2).jpg'
+                            },
+                            {
+                                name: 'OPK',
+                                img: 'http://localhost/b (3).jpg'
+                            },
+                            {
+                                name: 'GHT',
+                                img: 'http://localhost/b (4).jpg'
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    })
+</script>
+
+</html>
