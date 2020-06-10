@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>render渲染</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{ name }}
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: 'render渲染'
+        },
+        render(createElement) {
+            return createElement("ul", {
+                    style: {
+                        fontSize: '20px',
+                        color: '#f0f',
+                    },
+                    attrs: {
+                        name: 'data-custom'
+                    },
+                    class: "active"
+                },
+                [
+                    createElement("li", { // 样式必须要在内容之前
+                        style: {
+                            color: '#0f0'
+                        }
+                    }, "li标签01"),
+                    createElement("li", "li标签02"),
+                    createElement("li", "li标签03")
+                ]
+            )
+
+        }
+
+
+    })
+</script>
+
+</html>
