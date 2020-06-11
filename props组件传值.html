@@ -8,20 +8,35 @@
 </head>
 <body>
     <div id="app">
-        <span v-text="message"></span>
+        <templa :mz="obj.name" :nn="obj.age" :sm="obj.explain"></templa> 
     </div>
-    <template>
+    <template id="box">
         <div>
-
+            <h1>{{ mz }}</h1>
+            <h1>{{ nn }}</h1>
+            <h1>{{ sm }}</h1>
         </div>
     </template>
     <script>
-        // Vue.component('templa',)
+        Vue.component('templa', {
+            template:'#box',
+            props:{
+                mz: String,
+                nn: Number,
+                sm: String
+            }
+        })
         let vm = new Vue({
             el:'#app',
             data: {
-                message:'内容'
-            }
+                message:'内容',
+                obj:{
+                    name:'dillonl',
+                    age: 23,
+                    explain:'说明'
+
+                }
+            },
         })
     </script>
 </body>
