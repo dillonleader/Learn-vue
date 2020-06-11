@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue-resource/1.5.1/vue-resource.min.js"></script>
+    <title>vue-rescurce百度jsonp请求数据</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" @keyup="getData()" v-model="val">
+        <ul v-for="(item, index) in dataList" :key="index">
+            <li>
+                {{ item }}
+            </li>
+        </ul>
+    </div>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data: {
+                dataList: [],
+                val:''
+            },
+            mounted() {
+                this.getData()
+            },
+            methods: {
+                getData() {
+                    this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su', {
+                        params:{
+                            wd: this.val,
+                        },
+                        jsonp:'cb'
+                    }).then((res,err) =>{
+                        console.log(res);
+                        if(res){
+                            this.dataList = res.data.s
+                        }else{
+                            console.log(error);
+                        }
+                    })
+                }
+            },
+        })
+    </script>
+</body>
+</html>
